@@ -1,0 +1,533 @@
+@charset "utf-8";
+
+// ============================================================
+// main
+// ============================================================
+
+//　ヘッダー部分
+header{
+	@extend %clear;
+	width: 100%;
+	height: 60px;
+	padding: 20px;
+	background: $green;
+	box-sizing: border-box;
+	z-index: 1000;
+	position: fixed;
+	box-shadow: 0 0 1px #000;
+	top: 0;
+	// transform: translateZ(0);
+	i{
+		color: #fff;
+		@include fs(22);
+	}
+	.bars{
+		float: left;
+		@extend %fa-bars;
+		padding: 13px;
+		margin-top: -13px;
+		margin-left: -13px;
+		// &.tapped{
+		// 	color: $lightgreen;
+		// }
+	}
+	.bell{
+		float: right;
+		@extend %fa-bell;
+	}
+	h1{
+		text-align: center;
+		color: #fff;
+		@include fs(20);
+		font-weight: normal;
+		img{
+			padding: 10px;
+			margin-top: -10px;
+		}
+	}
+}
+
+//　カバー写真
+
+.coverBg{
+	position: absolute;
+	margin-top: 60px;
+	z-index: -10;
+	width: 100%;
+	text-align: center;
+	img{
+		width: 100%;
+		height: auto;
+	}
+}
+.cover{
+	height: 194px;
+	// background: url("../img/cover.jpg") no-repeat center top;
+	// background-size: contain;
+	z-index: -1000;
+	padding-top: 60px;
+	h2{
+		color: #fff;
+		@include fs(22);
+		font-family: Futura;
+		top: 66px;
+		position: relative;
+		text-align: center;
+		text-shadow: 0px 0px 10px #000;
+	}
+	.profilePic{
+		position: relative;
+		text-align: center;
+		top: 78px;
+		background-size: contain;
+		z-index: 200;
+		width: 150px;
+		margin: 0 auto;
+		.profileFlm{
+			width: 120px;
+			height: 120px;
+			border-radius: 120px;
+			border: 8px solid $gold;
+			margin: 0 auto;
+		}
+		img{
+			width: 125px;
+			height: 125px;
+			border-radius: 125px;
+			background: url("../img/loader.gif") no-repeat center #fff;
+			z-index: -10;
+			position: relative;
+			left: -3px;
+			top: -3px;
+		}
+	}
+	.edit{
+		background: $gray;
+		width: 30px;
+		height: 30px;
+		border-radius: 30px;
+		text-align: center;
+		line-height: 28px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		i{
+			@extend %fa-pencil;
+			color: #fff;
+		}
+	}
+	.searchBox{
+		text-align: center;
+		top: 15px;
+		position: relative;
+		// background: url("../img/icon_search.png") no-repeat 43px 5px;
+		width: 310px;
+		margin: 0 auto;
+		z-index: 100;
+		&:before{
+			content: "\f002";
+			font-family: FontAwesome;
+			color: #fff;
+			@include fs(12);
+			position: absolute;
+			top: 3px;
+			left: 40px;
+		}
+		input{
+			border: 0;
+			border-radius: 20px;
+			padding: 5px 10px 5px 32px;
+			width: 260px;
+			background: rgba(#eee, .4);
+			@include fs(12);
+			color: $mudgray;
+		}
+	}
+}
+
+///////　タイムライン //////////
+.timeline{
+	padding-top: 66px;
+	padding-bottom: 100px;
+	border-top: 1px solid #fff;
+	position: relative;
+	z-index: -100;
+	background: $lightgold url("../img/bar_timeline.gif") repeat-y center;
+	text-align: center;
+	top: -4px;
+	z-index: 0;
+}
+
+//　年単位
+.yearBlock{
+	@extend %clear;
+	margin: 20px 0;
+	display: none;
+	span.year{
+		padding: 3px 10px;
+		color: #525261;
+		@include fs(16);
+		background: #fff;
+		border-radius: 16px;
+		border: 1px solid $gold;
+		display: block;
+		width: 50px;
+		margin: 20px auto;
+		&.now{
+			background: $deeepgold;
+			color: #fff;
+			@include fs(12);
+		}
+	}
+	ul{
+		width: 320px;
+		margin: 0 auto;
+	}
+
+	li{
+		@extend %clear;
+		display: block;
+		margin-bottom: 10px;
+		.storyChar{
+			width: 130px;
+			> span{
+				display: block;
+			}
+		}
+		&.born .title:before{
+			content: "\f1fd";
+			font-family: FontAwesome;
+			color: #888;
+			margin-right: 6px;
+			@include fs(12);
+		}
+	}
+}
+
+//　ストーリー単位
+.storyBlock{
+	width: 180px;
+	&:nth-child(2n){
+		float: right;
+		.storyChar{
+			float: right;
+			text-align: left;
+			margin-left: 10px;
+		}
+	}
+	&:nth-child(2n+1){
+		float: left;
+		.storyChar{
+			float: left;
+			text-align: right;
+			margin-right: 10px;
+		}
+	}
+	.storyPic{
+		width: 30px;
+		height: 30px;
+		background: #FF888D;
+		border-radius: 30px;
+		border: 3px solid #FF888D;
+		display: inline-block;
+		background-size: cover;
+	}
+	.date{
+		color: #AAA;
+	}
+	.title{
+		color: #525261;
+	}
+	.tag{
+		> span{
+			color: #ccc;
+			margin-right: 5px;
+		}
+		color: #ccc;
+		@include fs(12);
+	}
+}
+
+//　経歴単位
+.bioBlock{
+	clear: both;
+	.storyChar{
+		text-align: center;
+		@include fs(12);
+		line-height: 150%;
+		font-weight: bold;
+		display: inline-block;
+		margin: 10px 0 20px 0;
+		border: 1px solid $lightgold;
+		background: $gold;
+		padding: 8px 10px;
+		border-radius: 3px;
+		.date{
+			color: #ccc;
+		}
+		.title{
+			color: #888;
+		}
+	}
+}
+
+
+// ストーリー詳細
+.storyDetail{
+	position: fixed;
+	display: none;
+	z-index: 200000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(#ccc, .6);
+	transform: translateZ(0);
+	.storyDetailContainer{
+		width: 94%;
+		height: 96%;
+		background: $lightgold;
+		margin: 10px auto;
+		border-radius: 6px;
+	}
+	.storyDetailCover{
+		background: url('../img/19.jpg') no-repeat center;
+		height: 180px;
+		background-size: cover;
+		position: relative;
+		border-radius: 6px 6px 0 0;
+		.author{
+			bottom: 10px;
+			left: 10px;
+			position: absolute;
+			.authorPic{
+				float: left;
+				img{
+					width: 60px;
+					height: 60px;
+					border-radius: 80px;
+					border: 2px solid #eee;
+				}
+			}
+			.authorInfo{
+				float: right;
+				margin-left: 5px;
+				margin-top: 40px;
+				> span{
+					color: #fff;
+					display: block;
+					line-height: 140%;
+					text-shadow: #444 0px 0px 4px;
+				}
+			}
+		}
+		button{
+			background: $gray;
+			width: 30px;
+			height: 30px;
+			border-radius: 30px;
+			border: 0;
+			top: 10px;
+			right: 10px;
+			position: absolute;
+			i{
+				@extend %fa-close;
+				color: #fff;
+				@include fs(16);
+				right: 1px;
+				position: relative;
+			}
+		}
+	}
+	.storyDetailEdit{
+		position: absolute;
+		right: 30px;
+		top: 194px;
+		text-align: right;
+		i{
+			@extend %fa-chevron-down;
+			color: $deepgold;
+			padding: 8px 12px;
+			margin-right: -12px;
+			// .tapped{
+			// 	color: $gray;
+			// }
+		}
+		ul{
+			padding: 4px 14px;
+			background: $deeepgold;
+			border-radius: 2px;
+			li{
+				color: #fff;
+				@include fs(12);
+				margin: 2px 0;
+				text-align: left;
+				&:before{
+					font-family: FontAwesome;
+					color: $lightgold;
+					@include fs(12);
+				}
+				&:first-child:before{
+					content: "\f044";
+					margin-right: 5px;
+				}
+				&:nth-child(2):before{
+					content: "\f1f8";
+					margin-right: 8px;
+				}
+			}
+		}
+	}
+	.storyDetailHl{
+		text-align: center;
+		margin: 18px 0 2px 0;
+		> span{
+			display: inline-block;
+		}
+		.date{
+			color: #AAA;
+		}
+		h2{
+			color: $mudgray;
+			margin: 5px 0;
+			@include fs(17);
+		}
+		.cate{
+			padding: 0 10px;
+			background: $deepgold;
+			color: #fff;
+			@include fs(10);
+			border-radius: 10px;
+			height: 18px;
+		}
+	}
+	.storyDetailTxt{
+		p{
+			margin: 10px;
+			height: 160px;
+			overflow: auto;
+			@include fs(13);
+			line-height: 140%;
+			color: $mudgray;
+		}
+	}
+}
+
+
+//　ストーリー追加ボタン
+.buttonAddStory{
+	width: 46px;
+	height: 46px;
+	border-radius: 46px;
+	border: 1px solid $deepgold;
+	background: $deeepgold;
+	bottom: 20px;
+	right: 20px;
+	position: fixed;
+	text-align: center;
+	line-height: 50px;
+	transform: translateZ(0);
+	i{
+		@extend %fa-plus;
+		@include fs(32);
+		color: #fff;
+	}
+}
+
+//　メニューの吹き出し
+.settings{
+	position: fixed;
+	background: rgba(#444, 0.95);
+	top: 50px;
+	left: 10px;
+	padding: 14px 6px;
+	border-radius: 10px;
+	z-index: 100000;
+	.sankaku{
+		width: 0;
+		height: 0;
+		border: 9px solid transparent;
+		border-bottom: 11px solid #444;
+		position: absolute;
+		top: 0;
+		left: 10px;
+		margin-top: -17px;
+	}
+	li{
+		padding: 10px 20px;
+		color: #fff;
+		@include fs(13);
+		&:before{
+			content: "\f0da";
+			font-family: FontAwesome;
+			color: #fff;
+			margin-right: 10px;
+			@include fs(14);
+		}
+	}
+}
+
+//カテゴリー一覧
+.categoryList{
+	background-color: rgba(255,255,255,0.9); 
+	position: fixed; 
+	top: 0; 
+	left:0px;
+	width: 100%;
+	height: 100%;
+	display:none;
+	z-index:200000;
+	ul{
+		text-align: center;
+		margin-top: 80px;
+		li{
+			display: block;
+			margin: 20px 0;
+			button{
+				width: 160px;
+				padding: 10px;
+				color: #fff;
+				border: 0;
+				border-radius: 5px;
+				@include fs(14);
+				box-shadow: 1px 1px 0px #ddd;
+			}
+			&:first-child{
+				button{
+					background: rgb(246, 94, 137);
+				}
+			}
+			&:nth-child(2){
+				button{
+					background: $deeepgold;
+				}
+			}
+			&:nth-child(3){
+				button{
+					background: #39D3A1;
+				}
+			}
+			&:nth-child(4){
+				button{
+					background: rgb(107, 124, 252);
+				}
+			}
+			&:nth-child(5){
+				button{
+					background: #000;
+				}
+			}
+		}
+	}
+}
+
+.ajaxLoading{
+	z-index: 1000000;
+	background-color: rgba(255,255,255,0.5);
+	position: fixed;
+	top: 0;
+	left:0px;
+	display:none;
+	width: 100%;
+	height: 568px;
+}

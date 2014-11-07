@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>LANE DEMO</title>
+	<link href="css/styles.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/friend.js"></script><!-- 差分 -->
+</head>
+<body ng-controller="ctrl">
+	<div class="starting"></div><!-- /.starting -->
+	<div id="wrapper">
+		<div class="container">
+			<header>
+				<i ng-click="showMenu()" class="fa bars"></i>
+				<i ng-click="goHome()" class="fa home"></i><!-- 差分 -->
+				<h1><a href="#top"><img src="img/logo@2x.gif" height="22" width="70" alt="LANE"></a></h1>
+			</header>
+			<span style="position: fixed; top: 0; left:0px;width: 320px;height: 60px;z-index:-200000;">
+				<input ng-model="add.date" id="addDate" type="date" name="addDate" placeholder="2014/09" size="15" >
+				<input ng-model="add.month" id="addMonth" type="month" name="addDate" placeholder="2014/09" size="15" >
+				<select ng-model="selectedCategory" id="addCategory" ng-options="category.num as category.label for category in categories"><option value="">なし</option></select>
+			</span>
+
+			<div class="coverBg"><img src="img/cover.jpg" height="400" width="640" alt="カバー写真"></div><!-- /.coverBg -->
+			<div class="cover" id="cover">
+				<div class="searchBox">
+					<input type="search" name="search" value="思い出を検索"　 onfocus="if (this.value == '思い出を検索') this.value = '';" onblur="if (this.value == '') this.value = '思い出を検索';" >
+				</div><!-- /.searchBox -->
+				<h2 id="userName" style="display:none;">{{userInfo.name}}'s STORY<!-- ユーザーの名前 --></h2>
+				<div class="profilePic">
+					<div class="profileFlm"  ng-click="submitPicture()">
+						<img id="profileImage" ng-click="submitPicture()" ng-src="img/{{userInfo.picture}}" /><!-- プロフィール写真 -->
+					</div>
+					<!-- 差分 -->
+				</div><!-- /.profile-pic -->
+			</div><!-- /.cover -->
+			<div class="timeline">
+				
+				<input file-upload enter="updatePicture()" type="file" name="file-upload" id="submitPicture" style="display:none;" /><!-- 写真フォーム(ださいから見せない) -->
+
+
+				<!-- タイムライン -->
+				<div class="yearBlock" id="yearBlock">
+					<span class="year now">現在</span>
+					<ul>
+					</ul>
+				</div>
+				<div class="yearBlock" id="yearBlock" ng-repeat="year in years" on-finish-render>
+					<span class="year">{{year}}</span>
+					<ul id="{{year}}">
+					</ul>
+				</div>
+			</div><!-- /.timeline -->
+			
+			<!-- ローディング -->
+			<div id="ajaxLoading" class="ajaxLoading">
+				<!-- <img src="img/loading.gif" height="50" width="50" alt="ローディング" style="position: fixed; top: 250px; left:135px;"> -->
+				<div class="spinner8">
+					<div class="spinner-container container1">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					<div class="spinner-container container2">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+					<div class="spinner-container container3">
+						<div class="circle1"></div>
+						<div class="circle2"></div>
+						<div class="circle3"></div>
+						<div class="circle4"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="settings" id="settings" ng-show="isVisibleMenue">
+				<div class="sankaku"></div>
+				<ul>
+					<li ng-click="showCategory()">カテゴリー<!-- カテゴリー --></li>
+					<li ng-click="showFriendList()">友人一覧<!-- 友人一覧 --></li>
+					<!-- 差分 -->
+					<li ng-click="logout()">ログアウト<!-- ログアウトボタン --></li>
+				</ul>
+			</div><!-- /.settings -->
+
+			<!-- ストーリー詳細 -->
+			<div id="storyDetail" class="storyDetail"><!-- showDetail,hideDetailクラス追加 -->
+				<div class="storyDetailContainer">
+					<div class="storyDetailCover">
+						<button ng-click="closeDetail()"><i class="fa"></i></button>
+						<div class="author">
+							<div class="authorPic"><img src="img/13.jpg" /></div><!-- /.authorPic -->
+							<div class="authorInfo">
+								<span class="name">Written by Yumiko</span><!-- /.name -->
+							</div><!-- /.authorInfo -->
+						</div><!-- /.author -->
+					</div><!-- /.storyCover -->
+					<div class="storyDetailEdit">
+						<i class="fa" ng-click="togglelMenue()"></i>
+						<ul ng-show="isDetailMenue" ng-click="detailAlert()">
+							<li>編集</li>
+							<li>削除</li>
+						</ul>
+					</div><!-- /.storyEdit -->
+					<div class="storyDetailHl">
+						<span class="date" id="detailDate"></span><!-- /.date -->
+						<h2 id="detailTitle"></h2>
+						<span class="cate" id="cate"></span><!-- /.cate -->
+					</div><!-- /.storyDetailHl -->
+					<div class="storyDetailTxt">
+						<p id="storyDetailTxt">
+						</p>
+					</div><!-- /.storyDetailTxt -->
+				</div><!-- /.storyDetailContainer -->
+			</div>
+
+			<!-- 新規追加 -->
+			<div class="buttonAddStory ng-class: {rotate120:isAddVisible};" ng-click="showAddForm()"><i class="fa"></i></div>
+			<div class="addForm" id="addForm">
+				<header>
+					<i class="fa arClose" ng-click="hideAddForm()"></i>
+					<h1>Story with {{userInfo.name}}</h1>
+				</header>
+
+				<ul class="addStoryList">
+					<li ng-click="changeIsMonth()">
+						<i class="fa check ok"></i><!-- /.check -->
+						日付を覚えている<input type="checkbox" ng-model="add.isMonth" style="display:none;">
+						<span class="answer" ng-show="!add.isMonth">YES</span>
+						<span class="answer" ng-show="add.isMonth">NO</span><!-- /.answer -->
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="changeDate()">
+						<i class="fa check ng-class: {ok: (add.date!=null&&add.date!=''&&!add.isMonth)||(add.month!=null&&add.month!=''&&add.isMonth)};"></i><!-- /.check -->
+						それはいつ？
+						<span class="answer" ng-show="!add.isMonth">{{add.date}}</span>
+						<span class="answer" ng-show="add.isMonth">{{add.month}}</span><span id = "dateAnswer"></span>
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="changeContent()">
+						<i class="fa check ng-class: {ok: add.content!=null&&add.content!=''};"></i><!-- /.check -->
+						どんな思い出？
+						<span class="answer"><span id="contentAnswer"></span>{{add.content|truncate:7}}</span><!-- /.answer --> 
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="changeTitle()">
+						<i class="fa check ng-class: {ok: add.title!=null&&add.title!=''};"></i><!-- /.check -->
+						タイトルをつけよう
+						<span class="answer"><span id="titleAnswer"></span>{{add.title|truncates:5}}</span><!-- /.answer --> 
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="changeCategory()">
+						<i class="fa check ok"></i><!-- /.check -->
+						カテゴリーは？
+						<span class="answer">
+							<span class="answer" ng-show="selectedCategory==1">経歴</span>
+							<span class="answer" ng-show="selectedCategory==2">思い出</span>
+							<span class="answer" ng-show="selectedCategory==3">スポーツ</span>
+							<span class="answer" ng-show="selectedCategory==4">音楽</span>
+						</span><!-- /.answer -->
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="changeIsPublic()">
+						<i class="fa check ok"></i><!-- /.check -->
+						公開する？<input type="checkbox" ng-model="add.isPublic" style="display:none;">
+						<span class="answer" ng-show="add.isPublic">公開</span>
+						<span class="answer" ng-show="!add.isPublic">非公開</span>
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="addPicture()" id="addPictureBtn">
+						<i class="fa check ok"></i><!-- /.check -->
+						写真を追加
+						<span class="answer"></span><!-- /.answer -->
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+					<li ng-click="removePicture()" id="removePictureBtn" style="display:none;">
+						<i class="fa check ok"></i><!-- /.check -->
+						写真を削除
+						<span class="answer" id="pictureArea"></span><!-- /.answer -->
+						<i class="fa arRight"></i><!-- /.fa -->
+					</li>
+				</ul>
+				<div></div>
+				<input file-add type="file" name="file-add" id="addPicture" style="display:none;" /><!-- 写真フォーム(ださいから見せない) -->
+				<div ng-click="addStory()" class="postStory ng-class: {ok: add.title!=null&&add.title!=''&&add.content!=null&&add.content!=''&&((add.date!=null&&add.date!=''&&!add.isMonth)||(add.month!=null&&add.month!=''&&add.isMonth))};">
+					思い出を投稿する
+				</div><!-- /.postStory -->
+			</div>
+
+			<!-- カテゴリー一覧 -->
+			<div id="categoryList" class="categoryList">
+				<ul>
+					<li><button ng-click="selectCategory(0)">すべて</button></li>
+					<li><button ng-click="selectCategory(1)">経歴</button></li>
+					<li><button ng-click="selectCategory(2)">思い出</button></li>
+					<li><button ng-click="selectCategory(3)">スポーツ</button></li>
+					<li><button ng-click="selectCategory(4)">黒歴史</button></li>
+				</ul>
+			</div>
+			
+			<!-- タイトル追加フォーム -->
+			<div class="addForm formToHeader" id="addTitleForm">
+				<header>
+					<i ng-click="closeTitleForm()" class="fa arLeft"></i>
+					<span class="send" ng-click="closeTitleForm()">完了</span><!-- /.send -->
+					<h1>タイトル</h1>
+				</header>
+				<textarea ng-model="add.title" placeholder="花火大会" name="addTitle" id="addTitle"></textarea>
+			</div>
+			<!-- 内容追加フォーム -->
+			<div class="addForm formToHeader" id="addContentForm">
+				<header>
+					<i class="fa arLeft" ng-click="closeContentForm()"></i>
+					<span ng-click="closeContentForm()" class="send">完了</span><!-- /.send -->
+					<h1>どんな思い出？</h1>
+				</header>
+				<textarea ng-model="add.content" placeholder="本文" cols="15" name="text" id="addContent"></textarea>
+			</div>
+		</div><!-- /.container -->
+	</div><!-- /.wrapper -->
+	<script src="js/smoothScroll.js"></script>
+</body>
+</html>

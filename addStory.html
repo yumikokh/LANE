@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>LANE DEMO</title>
+	<link href="css/styles.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+</head>
+<body ng-controller="ctrl">
+
+	<!-- ストーリー追加画面 -->
+	<div class="addForm">
+		<header>
+			<i class="fa arClose"></i>
+			<h1>Story with Yumiko</h1>
+		</header>
+
+		<ul class="addStoryList">
+			<li>
+				<i class="fa check ok"></i><!-- /.check -->
+				日付を覚えている
+				<span class="answer">NO</span><!-- /.answer -->
+				<i class="fa arRight"></i><!-- /.fa -->
+			</li>
+			<li>
+				<i class="fa check"></i><!-- /.check -->
+				それはいつ？
+				<!-- <span class="answer"></span><!-- /.answer --> 
+				<i class="fa arRight"></i><!-- /.fa -->
+			</li>
+			<li>
+				<i class="fa check "></i><!-- /.check -->
+				どんな思い出？
+				<!-- <span class="answer">NO</span><!-- /.answer --> 
+				<i class="fa arRight"></i><!-- /.fa -->
+			</li>
+			<li>
+				<i class="fa check"></i><!-- /.check -->
+				タイトルをつけよう
+				<!-- <span class="answer">NO</span><!-- /.answer --> 
+				<i class="fa arRight"></i><!-- /.fa -->
+			</li>
+			<li>
+				<i class="fa check ok"></i><!-- /.check -->
+				カテゴリーは？
+				<span class="answer">なし</span><!-- /.answer -->
+				<i class="fa arRight"></i><!-- /.fa -->
+			</li>
+			<li>
+				<i class="fa check ok"></i><!-- /.check -->
+				公開する？
+				<span class="answer">YES</span><!-- /.answer -->
+				<i class="fa arRight"></i><!-- /.fa -->
+			</li>
+		</ul>
+
+		<div class="postStory">
+			思い出を投稿する
+		</div><!-- /.postStory -->
+
+	</div><!-- /.addForm-->
+
+
+	<!-- 本文画面 -->
+	<div class="addForm">
+		<header>
+			<i class="fa arLeft"></i>
+			<span class="send">送信する</span><!-- /.send -->
+			<h1>どんな思い出？</h1>
+		</header>
+		<textarea name="text"></textarea><!-- /name= # cols=30 rows=10 -->
+
+	</div><!-- /.addForm-->
+</body>
+</html>

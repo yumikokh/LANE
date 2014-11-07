@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+    <meta charset="UTF-8">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LANE">
+    <meta property="og:site_url" content="http://c.tehepero.xyz">
+    <meta property="og:title" content="LANE DEMO">
+    <meta property="og:description" content="Cチームです。よろしくおねがいします！！！">
+    <meta property="og:url" content="http://c.tehepero.xyz">
+    <meta property="og:image" content="/img/ogp.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>LANE DEMO | ログイン・新規登録</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/login.js"></script>
+</head>
+<body ng-controller="ctrl">
+    <div class="container">
+        <header>
+            <h1><img src="img/logo@2x.gif" height="22" width="70" alt="REAL"></h1>
+        </header>
+        <div class="registerBox login">
+            <h2>ログイン</h2>
+            <dl>
+                <dt><i class="fa name"></i>名前</dt>
+                <dd> <input ng-model="user.name" type="text" class="form-control" placeholder="tarou" /></dd>
+            </dl>
+            <button ng-click="login()">ログイン</button>
+        </div><!-- /.login -->
+        <div class="registerBox">
+            <h2>新規登録</h2>
+            <dl>
+                <dt><i class="fa name"></i>名前</dt>
+                <dd><input ng-model="guest.name" type="text" class="form-control" placeholder="tarou" /></dd>
+                <dt><i class="fa birth"></i>誕生日</dt>
+                <dd><input ng-model="guest.birthday" type="date" class="form-control" placeholder="1991/11/24" /></dd>
+            </dl>
+            <button ng-click="signup()">登録</button>
+        </div><!-- /.register -->
+
+    </div><!-- /.container -->
+</body>
+</html>

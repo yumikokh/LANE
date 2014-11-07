@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>LANE DEMO | 友だち一覧</title>
+	<link href="css/styles.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/friendList.js"></script>
+</head>
+<body ng-controller="ctrl">
+	<div class="wrapper" id="wrapper">
+		<div class="container">
+			<header>
+				<i ng-click="goHome()" class="fa arLeft"></i>
+				<i ng-click="goHome()" class="fa home"></i>
+				<h1>友だち一覧</h1>
+			</header>
+			<!-- ユーザー一覧 -->
+			<div id="userList" class="userList">
+				<ul>
+					<li ng-repeat="user in users" ng-click="showUserDetail($index)" on-finish-render>
+						
+						<img id="userImage" ng-click="showUserDetail($index)" ng-src="img/{{user.picture}} " height="100" /><!-- 写真 -->
+						<div class="name">{{user.name}}</div><!-- 名前 -->
+					</li>
+				</ul>
+			</div><!-- /.userList -->
+		</div><!-- /.container -->
+	</div><!-- /.wrapper -->
+</body>
+</html>

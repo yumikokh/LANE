@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+// ============================================================
+// フレンド一覧
+// ============================================================
+
+.userList{
+	margin: 70px 0;
+	li{
+		@extend %clear;
+		padding: 12px 40px;
+		margin: 0 10px;
+		border-bottom: 1px solid $gold;
+		color: $mudgray;
+		
+		.name{
+			float: left;
+			line-height: 50px;
+			margin-left: 20px;
+		}
+		img{
+			float: left;
+			width: 50px;
+			height: 50px;
+			border-radius: 8px;
+			border: 1px solid $deeepgold;
+		}
+	}
+}

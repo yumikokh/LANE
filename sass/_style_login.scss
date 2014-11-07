@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+// ============================================================
+// ログイン
+// ============================================================
+.login{
+	margin-top: 80px !important;
+}
+.registerBox{
+	margin: 20px auto;
+	padding: 16px 0;
+	text-align: center;
+	width: 280px;
+	background: #eee;
+	border-radius: 10px;
+	box-shadow: 1px 1px 0px #ddd;
+	h2{
+		color: darken($green ,10%);
+		margin-bottom: 10px;
+		@include fs(18);
+	}
+	input{
+		border: 0;
+		padding: 6px;
+		border-radius: 3px;
+		color: $mudgray;
+	}
+	button{
+		background: $green;
+		color: #fff;
+		@include fs(18);
+		border: #000;
+		padding: 8px 20px;
+		border-radius: 3px;
+		width: 200px;
+		box-shadow: 1px 1px 0px #0B8B7C;
+	}
+	dl{
+		@extend %clear;
+		margin: 14px 10px 2px;
+		dt{
+			float: left;
+			clear: both;
+			width: 80px;
+			text-align: right;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			color: $mudgray;
+			padding-top: 3px;
+			i{
+				color: $gray;
+				margin-right: 6px;
+				@include fs(14);
+			}
+			i.birth{
+				@extend %fa-birthday-cake;
+			}
+			i.name{
+				@extend %fa-user;
+			}
+		}
+		dd{
+			float: left;
+			margin-bottom: 10px;
+		}
+	}
+}

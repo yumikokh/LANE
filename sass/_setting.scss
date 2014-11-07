@@ -1,0 +1,70 @@
+@charset "utf-8";
+// ============================================================
+// 設定
+// ============================================================
+
+// HTML5の場合は「true」
+$html5 : true;
+
+// compass ブラウザサポート
+$legacy-support-for-ie6 : true;
+$legacy-support-for-ie7 : true;
+
+$experimental-support-for-webkit : true;
+$experimental-support-for-mozilla : true;
+$experimental-support-for-opera : true;
+$experimental-support-for-microsoft : true;
+$experimental-support-for-khtml : false;
+
+//ie9用 svg
+$experimental-support-for-svg: true;
+
+
+// 画像パス
+$imgPath : "../img/";
+
+// commonフォルダ内の画像のパス
+$commonImgPath: "../common/img/";
+
+// ページの全体の横幅
+$baseWidth : 320px;
+
+// 標準font-family
+$fontFamily : "Futura","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Sans-Serif;
+
+// 標準行間
+$lineHeight : 140%;
+
+// 標準テキストカラー
+$textColor : #333333;
+
+// 標準リンクカラー
+$linkColor : #A7000C;
+$linkColor_visit : #A7000C;
+$linkColor_active : #A7000C;
+$linkColor_hover : #333333;
+
+// カラー定義
+$deepgold: #D5CFBB;
+$lightgold: #FBF9F5;
+$gold: #F4F3F0;
+$deeepgold: #9C9681;
+$gray: #444;
+$mudgray: #525260;
+$green: #19AA8D;
+$lightgreen: rgb(34, 211, 161);
+
+
+// MediaQuery Width
+$width-pc: 980px;
+$width-tablet: 979px;
+$width-tablet1: 979px;
+$width-tablet2: 768px;
+$width-smartphone: 400px;
+$width-scrollbar: 20px;
+
+
+
+
+
+

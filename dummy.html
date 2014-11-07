@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<title>REAL DEMO</title>
+	<link href="css/styles.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+	<!-- パララックス -->
+	<script src="js/jquery.parallax.js"></script>
+	<script>
+		$('#coverBg').parallax({
+			calibrateX: false,
+			calibrateY: true,
+			invertX: false,
+			invertY: true,
+			limitX: false,
+			limitY: 10,
+			scalarX: 2,
+			scalarY: 8,
+			frictionX: 0.2,
+			frictionY: 0.8,
+			originX: 0.0,
+			originY: 1.0
+		});
+	</script>
+	// <script>
+	// 	$('#coverBg').parallax();
+	// 	　
+	// </script>
+
+</head>
+<body ng-controller="ctrl">
+	<div class="container">
+		<header>
+
+			<!-- Webフォントに変更、ベル追加 -->
+			<i class="fa bars"></i>
+			<i class="fa bell"></i>
+			<h1><img src="img/logo@2x.gif" height="22" width="70" alt="REAL"></h1>
+		</header>
+		<!-- <div class="coverBg"><img src="img/cover.jpg" height="400" width="640" alt="カバー写真" data-depth="0.80"></div><!-- /.coverBg --> -->
+		<ul class="coverBg" id="coverBg">
+			<li class="layer" data-depth="0.80"><img src="img/cover.jpg" height="400" width="640" alt="カバー写真"></li>
+			<li class="layer" data-depth="0.30"><img src="img/13.jpg" height="300" width="300" alt=""></li>
+		</ul><!-- /.coverBg -->
+		<div class="cover" id="cover">
+
+			<!-- 検索ボックス追加！yumikokh -->
+			<div class="searchBox">
+				<input type="search" name="search" value="思い出を検索"　 onfocus="if (this.value == '思い出を検索') this.value = '';" onblur="if (this.value == '') this.value = '思い出を検索';" >
+			</div><!-- /.searchBox -->
+
+			<h2>YUMIKO's STORY<!-- ユーザーの名前 --></h2>
+			<div class="profilePic">
+				<div class="profileFlm">
+					<img id="profileImage" ng-click="submitPicture()" src="img/13.jpg" /><!-- プロフィール写真 -->
+				</div><!-- /.profileFlm -->
+				<!-- 編集ボタン追加 -->
+				<div class="edit"><i class="fa"></i></div><!-- /.edit -->
+
+			</div><!-- /.profile-pic -->
+		</div><!-- /.cover -->
+		<div class="timeline">
+			
+			<input file-upload enter="updatePicture()" type="file" name="file-upload" id="submitPicture" style="display:none;" /><!-- 写真フォーム(ださいから見せない) -->
+
+			<!-- タイムライン -->
+			
+			<div class="yearBlock" id="{{year}}" ng-repeat="year in years">
+				<span class="year">2013</span>
+				<ul>
+					<li class="storyBlock">
+						<div class="storyPic" style="background-image: url('img/11.jpg');"></div><!-- /.storyPic -->
+						<div class="storyChar">
+							<span class="date">0308</span>
+							<span class="title">
+								野球チームに入る
+							</span><!-- /.title -->
+							<span class="tag">
+								<span>with</span>YUMIKO
+							</span><!-- /.with -->
+						</div><!-- /.storyChar -->
+					</li>
+
+					<!-- 経歴追加 yumikokh -->
+					<li class="bioBlock">
+						<div class="storyChar">
+							<span class="date">0308</span>
+							<span class="title">
+								九州大学大学院に入学
+							</span><!-- /.title -->
+						</div><!-- /.storyChar -->
+					</li>
+
+
+					<li class="storyBlock">
+						<div class="storyPic"></div><!-- /.storyPic -->
+						<div class="storyChar">
+							<span class="date">0308</span>
+							<span class="title">
+								野球チームに入る
+							</span><!-- /.title -->
+							<span class="tag">
+								<span>with</span>YUMIKO
+							</span><!-- /.with -->
+						</div><!-- /.storyChar -->
+					</li>
+					<li class="storyBlock">
+						<div class="storyPic"></div><!-- /.storyPic -->
+						<div class="storyChar">
+							<span class="date">0308</span>
+							<span class="title">
+								野球チームに入る
+							</span><!-- /.title -->
+							<span class="tag">
+								<span>with</span>YUMIKO
+							</span><!-- /.with -->
+						</div><!-- /.storyChar -->
+					</li>
+				</ul>
+			</div>
+
+			<div class="yearBlock" id="{{year}}" ng-repeat="year in years">
+				<span class="year">2012</span>
+				<ul>
+					<li class="storyBlock">
+						<div class="storyPic" style="background-image: url('img/11.jpg');"></div><!-- /.storyPic -->
+						<div class="storyChar">
+							<span class="date">0308</span>
+							<span class="title">
+								インターハイ出場
+							</span><!-- /.title -->
+							<span class="tag">
+								<span>with</span>YUMIKO
+							</span><!-- /.with -->
+						</div><!-- /.storyChar -->
+					</li>
+					<li class="storyBlock">
+						<div class="storyPic"></div><!-- /.storyPic -->
+						<div class="storyChar">
+							<span class="date">0308</span>
+							<span class="title">
+								野球チームに入る
+							</span><!-- /.title -->
+							<span class="tag">
+								<span>with</span>YUMIKO
+							</span><!-- /.with -->
+						</div><!-- /.storyChar -->
+					</li>
+				</ul>
+			</div>
+
+		</div><!-- /.timeline -->
+
+
+		<!-- ストーリー詳細 -->
+		<div id="storyDetail" class="storyDetail">
+			<div class="storyDetailContainer">
+				<div class="storyDetailCover">
+					<button ng-click="closeDetail()"><i class="fa"></i></button>
+					<div class="author">
+						<div class="authorPic"><img src="img/13.jpg" /></div><!-- /.authorPic -->
+						<div class="authorInfo">
+							<span class="date">2014-09-20</span><!-- /.date -->
+							<span class="name">Written by Yumiko</span><!-- /.name -->
+						</div><!-- /.authorInfo -->
+					</div><!-- /.author -->
+				</div><!-- /.storyCover -->
+				<div class="storyDetailEdit">
+					<i class="fa"></i>
+				</div><!-- /.storyEdit -->
+				<div class="storyDetailHl">
+					<span class="date">1997-08-02</span><!-- /.date -->
+					<h2>研究室ライフ</h2>
+					<span class="cate">大学生</span><!-- /.cate -->
+				</div><!-- /.storyDetailHl -->
+				<div class="storyDetailTxt">
+					<p>
+						研究室ライフあああああダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入りますダミーが入ります
+					</p>
+				</div><!-- /.storyDetailTxt -->
+			</div><!-- /.storyDetailContainer -->
+		</div>
+
+		<!-- 新規追加 -->
+		<div class="buttonAddStory" ng-click="showAddForm()">
+
+			<!-- Webフォントに変更yumikokh -->
+			<i class="fa"></i></div>
+
+		</div><!-- /.container -->
+	</body>
+	</html>
