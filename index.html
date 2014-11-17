@@ -100,7 +100,7 @@
 			<!-- ストーリー詳細 -->
 			<div id="storyDetail" class="storyDetail"><!-- showDetail,hideDetailクラス追加 -->
 				<div class="storyDetailContainer">
-					<div class="storyDetailCover">
+					<div class="storyDetailCover" style="background-image: url('/img/19.jpg')">
 						<button ng-click="closeDetail()"><i class="fa"></i></button>
 						<div class="author">
 							<div class="authorPic"><img src="img/13.jpg" /></div><!-- /.authorPic -->
@@ -203,6 +203,7 @@
 
 			<!-- カテゴリー一覧 -->
 			<div id="categoryList" class="categoryList">
+				<div class="cateClose"><i class="fa"></i></div>
 				<ul>
 					<li><button ng-click="selectCategory(0)">すべて</button></li>
 					<li><button ng-click="selectCategory(1)">経歴</button></li>

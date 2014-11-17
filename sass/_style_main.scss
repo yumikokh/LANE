@@ -291,7 +291,7 @@ header{
 		border-radius: 6px;
 	}
 	.storyDetailCover{
-		background: url('../img/19.jpg') no-repeat center;
+		background: no-repeat center;
 		height: 180px;
 		background-size: cover;
 		position: relative;
@@ -468,6 +468,22 @@ header{
 }
 
 //カテゴリー一覧
+.cateClose {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: #444;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	text-align: center;
+	line-height: 28px;
+	i{
+		@extend %fa-close;
+		color: #fff;
+	}
+
+}
 .categoryList{
 	background-color: rgba(255,255,255,0.9); 
 	position: fixed; 
