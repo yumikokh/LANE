@@ -23,9 +23,9 @@ app.controller("ctrl", function ($scope,$timeout) {
 			$("#wrapper").fadeIn(300);
 		}
 	});
-	$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+	// $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
 
-	};
+	// };
 
 
 	$scope.goHome = function(){
